@@ -16,6 +16,9 @@
     --accent-js: #d4a000;
     --accent-react: #0984e3;
     --accent-adv: #8e44ad;
+    --accent-perf: #16a34a;
+    --accent-security: #dc2626;
+    --accent-testing: #0891b2;
     --text: #1a1a2e;
     --muted: #6b6b8a;
     --card-bg: #ffffff;
@@ -101,12 +104,14 @@
     text-transform: uppercase;
   }
 
-  .section[data-section="html"] .badge { background: rgba(255,107,53,0.15); color: var(--accent-html); }
-  .section[data-section="css"]  .badge { background: rgba(0,212,170,0.15); color: var(--accent-css); }
-  .section[data-section="js"]   .badge { background: rgba(247,201,72,0.15); color: var(--accent-js); }
-  .section[data-section="react"]{ border-color: var(--border); }
-  .section[data-section="react"] .badge { background: rgba(97,218,251,0.15); color: var(--accent-react); }
-  .section[data-section="adv"]  .badge { background: rgba(192,132,252,0.15); color: var(--accent-adv); }
+  .section[data-section="html"] .badge { background: rgba(232,93,4,0.12); color: var(--accent-html); }
+  .section[data-section="css"]  .badge { background: rgba(0,150,199,0.12); color: var(--accent-css); }
+  .section[data-section="js"]   .badge { background: rgba(212,160,0,0.12); color: var(--accent-js); }
+  .section[data-section="react"] .badge { background: rgba(9,132,227,0.12); color: var(--accent-react); }
+  .section[data-section="adv"]  .badge { background: rgba(142,68,173,0.12); color: var(--accent-adv); }
+  .section[data-section="perf"] .badge { background: rgba(22,163,74,0.12); color: var(--accent-perf); }
+  .section[data-section="security"] .badge { background: rgba(220,38,38,0.12); color: var(--accent-security); }
+  .section[data-section="testing"] .badge { background: rgba(8,145,178,0.12); color: var(--accent-testing); }
 
   .count-badge {
     font-family: 'Space Mono', monospace;
@@ -132,11 +137,14 @@
     flex-shrink: 0;
   }
 
-  .section[data-section="html"] .btn-random { background: var(--accent-html); color: #000; }
-  .section[data-section="css"]  .btn-random { background: var(--accent-css); color: #000; }
+  .section[data-section="html"] .btn-random { background: var(--accent-html); color: #fff; }
+  .section[data-section="css"]  .btn-random { background: var(--accent-css); color: #fff; }
   .section[data-section="js"]   .btn-random { background: var(--accent-js); color: #000; }
-  .section[data-section="react"] .btn-random { background: var(--accent-react); color: #000; }
-  .section[data-section="adv"]  .btn-random { background: var(--accent-adv); color: #000; }
+  .section[data-section="react"] .btn-random { background: var(--accent-react); color: #fff; }
+  .section[data-section="adv"]  .btn-random { background: var(--accent-adv); color: #fff; }
+  .section[data-section="perf"] .btn-random { background: var(--accent-perf); color: #fff; }
+  .section[data-section="security"] .btn-random { background: var(--accent-security); color: #fff; }
+  .section[data-section="testing"] .btn-random { background: var(--accent-testing); color: #fff; }
 
   .btn-random:hover { transform: scale(1.05); opacity: 0.9; }
   .btn-random:active { transform: scale(0.97); }
@@ -208,6 +216,9 @@
   .section[data-section="js"]   .progress-bar { background: var(--accent-js); }
   .section[data-section="react"] .progress-bar { background: var(--accent-react); }
   .section[data-section="adv"]  .progress-bar { background: var(--accent-adv); }
+  .section[data-section="perf"] .progress-bar { background: var(--accent-perf); }
+  .section[data-section="security"] .progress-bar { background: var(--accent-security); }
+  .section[data-section="testing"] .progress-bar { background: var(--accent-testing); }
 
   .progress-text {
     font-family: 'Space Mono', monospace;
@@ -255,91 +266,126 @@ const data = {
   html: {
     label: "HTML",
     questions: [
-      { q: "Semantics là gì?", hint: "Ý nghĩa của thẻ HTML với trình duyệt & SEO" },
-      { q: "span vs div — khác nhau như nào?", hint: "inline vs block element" },
-      { q: "Thẻ <meta> dùng làm gì?", hint: "charset, viewport, og:, description..." },
-      { q: "Thuộc tính defer và async trên thẻ <script> là gì?", hint: "thứ tự tải & thực thi JS" },
-      { q: "Một trang web có thể chứa nhiều thẻ <header> hay <footer> không?", hint: "HTML5 semantic, per-section" },
-      { q: "srcset trong thẻ <img> dùng làm gì?", hint: "responsive images, DPR, breakpoint" },
-      { q: "Web Components là gì? Shadow DOM là gì?", hint: "Custom Elements, Shadow DOM, HTML Templates" },
-      { q: "HTML5 có gì mới? Kể 1 số thẻ mới.", hint: "<article>, <section>, <canvas>, <video>, <details>..." },
-      { q: "<iframe> dùng làm gì? Lưu ý gì?", hint: "embed, sandbox, security, performance" },
-      { q: "div vs section — khi nào dùng cái nào?", hint: "semantic vs generic container" },
+      { q: "Semantics là gì?", hint: "ý nghĩa thẻ, SEO, accessibility, maintenance" },
+      { q: "span vs div — khác nhau như nào?", hint: "inline vs block, lưu ý không nest div trong span" },
+      { q: "Thẻ <meta> dùng làm gì?", hint: "title, description, charset, Open Graph, robots" },
+      { q: "Thuộc tính defer và async trên thẻ <script> là gì?", hint: "parse HTML, download, execute — thứ tự khác nhau ra sao" },
+      { q: "Một trang web có thể chứa nhiều thẻ <header> hay <footer> không?", hint: "có, per-section — ví dụ header của article" },
+      { q: "srcset trong thẻ <img> dùng làm gì?", hint: "responsive image, browser tự chọn dựa theo DPR" },
+      { q: "Web Components là gì? Shadow DOM là gì?", hint: "Custom Elements, Shadow DOM isolated, HTML Templates" },
+      { q: "HTML5 có gì mới? Kể 1 số thẻ mới.", hint: "audio, video, header, nav, section, article, canvas, localStorage..." },
+      { q: "<iframe> dùng làm gì? Lưu ý gì?", hint: "embed trang khác, sandbox attribute, bảo mật" },
+      { q: "div vs section — khi nào dùng cái nào?", hint: "div: layout/style, section: có chủ đề + heading, Google index" },
     ]
   },
   css: {
     label: "CSS",
     questions: [
-      { q: "position trong CSS: static, relative, absolute, fixed, sticky.", hint: "stacking context, parent reference" },
-      { q: "box-sizing là gì? content-box vs border-box?", hint: "width bao gồm padding & border không?" },
-      { q: "inline vs inline-block vs block — khác nhau?", hint: "flow, width/height, margin" },
-      { q: "3 cách để định nghĩa màu trong CSS?", hint: "hex, rgb/rgba, hsl/hsla, named..." },
-      { q: "Những cách đưa 1 phần tử vào giữa trang?", hint: "flexbox, grid, margin auto, position+transform" },
-      { q: "margin vs padding — khác nhau?", hint: "outside vs inside, collapse, background" },
-      { q: "display:none vs visibility:hidden vs opacity:0 — khác nhau?", hint: "layout space, events, accessibility" },
-      { q: "Điểm khác biệt giữa width:auto và width:100%?", hint: "shrink-wrap vs parent width" },
-      { q: "grid vs flexbox — khi nào dùng cái nào?", hint: "2D vs 1D layout" },
-      { q: "px vs em vs rem — khác nhau?", hint: "absolute, parent-relative, root-relative" },
-      { q: "z-index hoạt động khi nào?", hint: "cần position khác static, stacking context" },
-      { q: "Giải thích các CSS selectors: div,p / div p / div>p / div+p / div~p", hint: "group / descendant / child / adjacent / sibling" },
-      { q: "BEM là gì? Cách đặt tên theo BEM?", hint: "Block__Element--Modifier" },
-      { q: "Có mấy cách để sử dụng CSS trên trang web?", hint: "inline, internal <style>, external <link>" },
-      { q: "CSS có phân biệt hoa thường không?", hint: "selector không, nhưng attribute value thì có" },
+      { q: "position trong CSS — giải thích các loại?", hint: "static, relative, absolute, fixed, sticky — mốc tham chiếu khác nhau" },
+      { q: "box-sizing là gì? content-box vs border-box?", hint: "cách tính width/height, tại sao hay reset về border-box" },
+      { q: "inline vs inline-block vs block — khác nhau?", hint: "xuống hàng, chiếm width, set được width/height không" },
+      { q: "Liệt kê 3+ cách định nghĩa màu trong CSS?", hint: "hex, rgb, tên color, oklch — Tailwind 4 dùng oklch" },
+      { q: "Những cách đưa 1 phần tử vào giữa trang?", hint: "margin auto, flex, grid, position+transform, table-cell" },
+      { q: "margin vs padding — khác nhau?", hint: "ngoài vs trong, margin collapse (top+bottom), left+right cộng" },
+      { q: "display:none vs visibility:hidden vs opacity:0 — khác nhau?", hint: "reflow vs repaint, click được không" },
+      { q: "width:auto vs width:100% — khác nhau?", hint: "auto tự trừ margin/padding/border, 100% có thể tràn" },
+      { q: "grid vs flexbox — khi nào dùng cái nào?", hint: "2D vs 1D, design quyết định vs content quyết định" },
+      { q: "px vs em vs rem — khác nhau?", hint: "tuyệt đối, theo parent, theo root — em nhân chồng dễ bug" },
+      { q: "z-index hoạt động khi nào?", hint: "phải có position khác static, stacking context, ví dụ modal" },
+      { q: "Giải thích: div,p / div p / div>p / div+p / div~p", hint: "group / descendant / child trực tiếp / adjacent / sibling sau" },
+      { q: "BEM là gì? Ưu nhược điểm?", hint: "Block__Element--Modifier, ít conflict, kết hợp SCSS tốt" },
+      { q: "Có mấy cách sử dụng CSS trên trang web?", hint: "link, inline, thẻ style, @import — @import chậm nhất" },
+      { q: "CSS có phân biệt hoa thường không?", hint: "tuỳ: selector/property không, nhưng class name, variable thì có" },
     ]
   },
   js: {
     label: "JS / TS",
     questions: [
-      { q: "Closure là gì? Cho ví dụ.", hint: "inner function nhớ scope của outer function" },
-      { q: "Currying là gì?", hint: "f(a,b,c) → f(a)(b)(c)" },
-      { q: "bind / call / apply — khác nhau?", hint: "đều thay this, call/apply gọi ngay, bind trả function" },
-      { q: "var vs let vs const — khác nhau?", hint: "scope, hoisting, reassign, temporal dead zone" },
-      { q: "Shallow clone vs Deep clone?", hint: "Object.assign, spread vs structuredClone, JSON, lodash" },
-      { q: "Callback là gì? Promise? Async/await? So sánh.", hint: "callback hell → Promise chain → async/await syntax" },
-      { q: "Event loop hoạt động như thế nào?", hint: "call stack, task queue, microtask queue, Web APIs" },
-      { q: "type vs interface trong TypeScript?", hint: "extends, declaration merge, union type..." },
-      { q: "Cho 2 object a và b, so sánh a === b trả về gì? Vì sao?", hint: "reference equality vs value equality" },
-      { q: "== vs === — khác nhau?", hint: "type coercion vs strict equality" },
-      { q: "Higher Order Function là gì? Cho ví dụ.", hint: "nhận hoặc trả về function: map, filter, reduce" },
-      { q: "splice vs split vs slice — khác nhau?", hint: "splice: array mutate / split: string→array / slice: copy" },
-      { q: "Cookie vs SessionStorage vs LocalStorage — khác nhau?", hint: "expiry, size, HTTPOnly, SameSite, Secure" },
-      { q: "map vs forEach vs for loop — khi nào dùng cái nào?", hint: "return value, break, performance" },
-      { q: "Các kiểu dữ liệu (data type) trong JavaScript?", hint: "primitive: string, number, boolean, null, undefined, symbol, bigint" },
-      { q: "So sánh map, forEach, filter, reduce — khi nào dùng cái nào?", hint: "transform / side-effect / filter / accumulate" },
-      { q: "Event bubbling là gì?", hint: "propagation từ child lên parent, stopPropagation, capture phase" },
+      { q: "Closure là gì? Ưu nhược điểm?", hint: "inner function nhớ lexical env của outer, private var, stale closure, memory leak" },
+      { q: "Currying là gì? Ví dụ thực tế?", hint: "f(a,b,c) → f(a)(b)(c), ví dụ handleChange trong form React" },
+      { q: "bind / call / apply — khác nhau?", hint: "this là gì trước, call/apply gọi ngay, bind trả function mới" },
+      { q: "var vs let vs const — khác nhau?", hint: "scope, hoisting, TDZ, reassign, use strict" },
+      { q: "Shallow clone vs Deep clone?", hint: "spread/assign vs structuredClone/lodash, lưu ý JSON.stringify limitations" },
+      { q: "Callback, Promise, Async/await — định nghĩa và so sánh?", hint: "callback hell → .then → async/await, Promise.all cho parallel" },
+      { q: "Event loop hoạt động như thế nào?", hint: "call stack, Web APIs, microtask (Promise), macrotask (setTimeout), render" },
+      { q: "type vs interface trong TypeScript?", hint: "union/tuple chỉ type làm được, declaration merge chỉ interface, & intersection bug" },
+      { q: "Cho 2 object a và b, so sánh bằng nhau như thế nào?", hint: "JSON.stringify (lưu ý thứ tự key), lodash isEqual, đệ quy" },
+      { q: "== vs === — khác nhau?", hint: "type coercion, [] == false, null == undefined, null == 0 là false" },
+      { q: "Higher Order Function là gì?", hint: "nhận hoặc trả về function, ví dụ map/filter/reduce, HOC trong React" },
+      { q: "splice vs split vs slice — khác nhau?", hint: "PM vs Member: splice mutate array, slice copy, split string→array" },
+      { q: "Cookie vs SessionStorage vs LocalStorage — khác nhau?", hint: "size, expiry, HTTPOnly, SameSite (Strict/Lax/None), Secure" },
+      { q: "map vs forEach vs for loop — khi nào dùng cái nào?", hint: "return value, break/continue, async/await behavior" },
+      { q: "Các kiểu dữ liệu trong JavaScript?", hint: "7 primitive: string/number/boolean/null/undefined/symbol/bigint, typeof function, NaN !== NaN" },
+      { q: "So sánh map, forEach, filter, reduce — khi nào dùng cái nào?", hint: "transform / side-effect / lọc / gộp thành 1 giá trị" },
+      { q: "Event bubbling là gì?", hint: "nổi từ child lên parent đến document, stopPropagation, target vs currentTarget, delegation" },
     ]
   },
   react: {
     label: "React",
     questions: [
-      { q: "useCallback, useMemo, React.memo — khi nào dùng?", hint: "memoize function / value / component" },
-      { q: "useLayoutEffect vs useEffect — khác nhau?", hint: "timing: before/after paint" },
-      { q: "Virtual DOM vs Real DOM là gì?", hint: "giải thích DOM trước, rồi diff/reconciliation" },
-      { q: "key trong React dùng làm gì?", hint: "reconciliation, tránh re-render sai" },
-      { q: "useRef và useImperativeHandle dùng làm gì?", hint: "DOM ref, expose method cho parent" },
-      { q: "Next.js là gì và vì sao dùng?", hint: "SSR, SSG, routing, image optimization, DX" },
-      { q: "CSR vs SSR vs SSG vs ISR — khác nhau?", hint: "when/where HTML is generated" },
-      { q: "Higher Order Component vs Custom Hook — khác nhau?", hint: "wrapper component vs reusable logic" },
-      { q: "Context API (useContext) dùng như nào?", hint: "createContext, Provider, Consumer, re-render" },
-      { q: "return trong useEffect dùng làm gì?", hint: "cleanup function, unmount, dependency change" },
-      { q: "Controlled vs Uncontrolled component?", hint: "state in React vs ref/DOM" },
-      { q: "forwardRef dùng làm gì? (bị bỏ ở React 19)", hint: "pass ref từ parent xuống child component" },
+      { q: "useCallback, useMemo, React.memo — khi nào dùng?", hint: "memo: shallow compare props, kết hợp useMemo/useCallback nếu props là object/function" },
+      { q: "useLayoutEffect vs useEffect — khác nhau?", hint: "trước vs sau khi browser vẽ, flicker, dùng cho tooltip/dropdown" },
+      { q: "Virtual DOM vs Real DOM là gì?", hint: "DOM là gì trước, virtual DOM, batching, reconciliation" },
+      { q: "key trong React — dùng làm gì? Tại sao không dùng index?", hint: "fiber tree, reconciliation, bug khi xoá giữa list, force re-render bằng key" },
+      { q: "useRef và useImperativeHandle dùng làm gì?", hint: "DOM ref, lưu giá trị không re-render, expose method cho parent" },
+      { q: "Next.js là gì và vì sao dùng?", hint: "SSR, SEO, file-based routing, image/font optimize, ISR, SSG" },
+      { q: "CSR vs SSR vs SSG vs ISR — khác nhau?", hint: "HTML được tạo khi nào, ở đâu, revalidate như nào" },
+      { q: "Higher Order Component vs Custom Hook — khác nhau?", hint: "HOC: wrapper hell, khó debug / Hook: phẳng hơn, dễ đọc hơn" },
+      { q: "Context API — dùng như nào? Lưu ý gì?", hint: "createContext, Provider, useContext, re-render, tách context nhỏ" },
+      { q: "return trong useEffect dùng làm gì?", hint: "cleanup: unmount + trước khi effect chạy lại" },
+      { q: "Controlled vs Uncontrolled component?", hint: "useState vs useRef, validate realtime vs lấy value khi cần" },
+      { q: "forwardRef dùng làm gì? (bị bỏ ở React 19)", hint: "truyền ref từ parent xuống child, kết hợp useImperativeHandle" },
     ]
   },
   adv: {
     label: "Nâng Cao",
     questions: [
-      { q: "CORS là gì? Khi dính CORS thì làm gì?", hint: "Origin, preflight, Access-Control-Allow-Origin, proxy" },
-      { q: "Redux vs Zustand/Jotai — khi nào dùng cái nào?", hint: "boilerplate, project size, DX" },
-      { q: "Handle error API như thế nào?", hint: "try/catch, interceptor, error boundary, retry" },
-      { q: "Multi-language (i18n) trong web như nào?", hint: "i18next, hreflang, lang attr, URL /vi /en, sitemap" },
-      { q: "Refresh token hoạt động như thế nào?", hint: "access token expire → dùng refresh token lấy token mới" },
-      { q: "AbortController dùng làm gì?", hint: "cancel fetch request, cleanup trong useEffect" },
-      { q: "Repaint vs Reflow — khác nhau?", hint: "reflow: layout change / repaint: visual change" },
-      { q: "useReducer dùng khi nào? So sánh với useState?", hint: "complex state logic, dispatch action" },
-      { q: "Tối ưu ảnh trong web bằng cách nào?", hint: "WebP/AVIF, lazy load, CDN, srcset, nén, preload" },
-      { q: "Promise.all vs Promise.race vs Promise.allSettled vs Promise.any?", hint: "all fail fast / race first / allSettled no fail / any first success" },
-      { q: "<picture> vs srcset — khác nhau?", hint: "picture: art direction / srcset: resolution switching" },
+      { q: "CORS là gì? Khi dính CORS thì làm gì?", hint: "origin = protocol+domain+port, fix ở server, dev dùng proxy vite" },
+      { q: "Redux chưa làm — giải thích tại sao dùng Zustand/Jotai?", hint: "ít boilerplate, gọn nhẹ, project nhỏ — nhưng biết flow Redux" },
+      { q: "Handle error API như thế nào?", hint: "interceptor axios, 401/403/500, error boundary React, error.ts Next.js" },
+      { q: "Multi-language (i18n) trong web như nào?", hint: "react-i18n/next-intl, hreflang, lang attr, URL /vi /en, sitemap" },
+      { q: "Refresh token hoạt động như thế nào?", hint: "interceptor 401 → refresh → retry, isRefreshing flag, queue, logout nếu hết hạn" },
+      { q: "AbortController dùng làm gì?", hint: "cancel fetch khi unmount hoặc search mới, signal kết nối controller với request" },
+      { q: "Repaint vs Reflow — khác nhau?", hint: "reflow: tính lại layout / repaint: vẽ lại / composite: GPU, ưu tiên composite > repaint > reflow" },
+      { q: "useReducer dùng khi nào? So sánh với useState?", hint: "nhiều state liên quan nhau, dispatch action, giống Redux nhưng local" },
+      { q: "Tối ưu ảnh trong web bằng cách nào?", hint: "WebP/AVIF, lazy load, CDN, srcset, preload, nén, Next.js Image tự serve AVIF" },
+      { q: "Promise.all vs .race vs .allSettled vs .any?", hint: "all: fail fast / race: nhanh nhất kể cả lỗi / allSettled: không fail / any: resolve nhanh nhất" },
+      { q: "<picture> vs srcset — khác nhau?", hint: "picture: force đúng ảnh theo breakpoint / srcset: gợi ý browser tự chọn theo DPR" },
+    ]
+  },
+  perf: {
+    label: "Code Splitting & Vitals",
+    questions: [
+      { q: "Code splitting là gì và tại sao cần dùng?", hint: "bundle nặng → tách chunk, chỉ load khi cần, ví dụ /dashboard chưa vào không load" },
+      { q: "React.lazy và Suspense dùng như nào?", hint: "dynamic import, fallback loading, chỉ hỗ trợ default export" },
+      { q: "Nên split code ở đâu? Route-based vs component-based?", hint: "route-based phổ biến nhất, component-based cho modal/chart nặng" },
+      { q: "Lazy load bị lỗi network thì xử lý như nào?", hint: "Error Boundary bọc Suspense, fallback UI, nút retry" },
+      { q: "Preload component trước khi user navigate thì làm như nào?", hint: "trigger import() lúc onMouseEnter, Next.js tự prefetch" },
+      { q: "Core Web Vitals là gì?", hint: "LCP < 2.5s, CLS < 0.1 — đo gì, tại sao quan trọng" },
+      { q: "LCP chậm thì fix như nào?", hint: "preload hero image, CDN, WebP/AVIF, SSR, giảm render-blocking" },
+      { q: "CLS cao thì fix như nào?", hint: "set width/height cho img/video, font-display, không inject content phía trên" },
+      { q: "Dùng tool nào để đo Web Vitals?", hint: "Lighthouse, PageSpeed Insights, Chrome DevTools Performance" },
+    ]
+  },
+  security: {
+    label: "Security & A11y",
+    questions: [
+      { q: "XSS là gì? Có mấy loại? Phòng chống như nào?", hint: "Stored / Reflected / DOM-based, dangerouslySetInnerHTML, DOMPurify, HttpOnly, CSP" },
+      { q: "CSRF là gì? Khác XSS ở điểm nào?", hint: "trang khác gửi request giả mạo, SameSite cookie, CSRF token" },
+      { q: "Tại sao không nên lưu token trong localStorage?", hint: "JS đọc được → XSS lấy token, HttpOnly cookie an toàn hơn" },
+      { q: "Accessibility là gì? Tại sao quan trọng?", hint: "screen reader, pháp lý, SEO, best practice" },
+      { q: "ARIA roles là gì? Khi nào dùng?", hint: "bổ sung semantic cho screen reader, dùng semantic HTML trước" },
+      { q: "Keyboard navigation và tabIndex dùng làm gì?", hint: "tabIndex=0 vào tab order, tabIndex=-1 focus bằng JS, tránh tabIndex > 0" },
+      { q: "WCAG là gì? Level A, AA, AAA khác nhau gì?", hint: "A: tối thiểu, AA: chuẩn hầu hết dự án, AAA: khó đạt, color contrast 4.5:1" },
+    ]
+  },
+  testing: {
+    label: "Testing",
+    questions: [
+      { q: "Unit test, integration test, e2e test khác nhau gì?", hint: "1 function / nhiều module cùng nhau / toàn bộ flow browser thật" },
+      { q: "Nên test behavior hay implementation?", hint: "behavior: test như user dùng, refactor không break / implementation: brittle" },
+      { q: "Làm sao test custom hook?", hint: "renderHook từ @testing-library/react, act() để wrap state change" },
+      { q: "Test coverage 100% có đảm bảo không bug không?", hint: "không — chạy qua code không có nghĩa assert đúng, quan trọng là test có ý nghĩa" },
     ]
   }
 };
