@@ -1,408 +1,517 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interview Flash Cards</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview Flash Cards</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
 
-  :root {
-    --bg: #f0f0f8;
-    --surface: #ffffff;
-    --border: #d0d0e0;
-    --accent-html: #e85d04;
-    --accent-css: #0096c7;
-    --accent-js: #d4a000;
-    --accent-react: #0984e3;
-    --accent-adv: #8e44ad;
-    --accent-perf: #16a34a;
-    --accent-security: #dc2626;
-    --accent-testing: #0891b2;
-    --text: #1a1a2e;
-    --muted: #6b6b8a;
-    --card-bg: #ffffff;
-  }
+    :root {
+      --bg: #f0f0f8;
+      --surface: #ffffff;
+      --border: #d0d0e0;
+      --accent-html: #e85d04;
+      --accent-css: #0096c7;
+      --accent-js: #d4a000;
+      --accent-react: #0984e3;
+      --accent-adv: #8e44ad;
+      --accent-perf: #16a34a;
+      --accent-security: #dc2626;
+      --accent-testing: #0891b2;
+      --text: #1a1a2e;
+      --muted: #6b6b8a;
+      --card-bg: #ffffff;
+    }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Syne', sans-serif;
-    min-height: 100vh;
-    padding: 2rem 1rem 4rem;
-    background-image: 
-      radial-gradient(ellipse at 20% 20%, rgba(232,93,4,0.06) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 80%, rgba(9,132,227,0.06) 0%, transparent 60%);
-  }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      min-height: 100vh;
+      padding: 2rem 1rem 4rem;
+      background-image:
+        radial-gradient(ellipse at 20% 20%, rgba(232, 93, 4, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, rgba(9, 132, 227, 0.06) 0%, transparent 60%);
+    }
 
-  h1 {
-    text-align: center;
-    font-size: clamp(1.6rem, 4vw, 2.8rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.3rem;
-    background: linear-gradient(135deg, #1a1a2e 40%, #6b6b8a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+    h1 {
+      text-align: center;
+      font-size: clamp(1.6rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.3rem;
+      background: linear-gradient(135deg, #1a1a2e 40%, #6b6b8a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-  .subtitle {
-    text-align: center;
-    color: var(--muted);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.78rem;
-    margin-bottom: 3rem;
-    letter-spacing: 0.1em;
-  }
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      margin-bottom: 3rem;
+      letter-spacing: 0.1em;
+    }
 
-  .sections {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
+    .sections {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
 
-  .section {
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    background: var(--card-bg);
-    transition: border-color 0.3s;
-  }
+    .section {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--card-bg);
+      transition: border-color 0.3s;
+    }
 
-  .section:hover { border-color: #b0b0cc; }
+    .section:hover {
+      border-color: #b0b0cc;
+    }
 
-  .section-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.2rem 1.5rem;
-    border-bottom: 1px solid var(--border);
-    gap: 1rem;
-  }
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
 
-  .section-title {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    font-weight: 800;
-    font-size: 1.1rem;
-    letter-spacing: -0.01em;
-  }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+    }
 
-  .badge {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    font-weight: 700;
-    padding: 0.2rem 0.55rem;
-    border-radius: 999px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
+    .badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
 
-  .section[data-section="html"] .badge { background: rgba(232,93,4,0.12); color: var(--accent-html); }
-  .section[data-section="css"]  .badge { background: rgba(0,150,199,0.12); color: var(--accent-css); }
-  .section[data-section="js"]   .badge { background: rgba(212,160,0,0.12); color: var(--accent-js); }
-  .section[data-section="react"] .badge { background: rgba(9,132,227,0.12); color: var(--accent-react); }
-  .section[data-section="adv"]  .badge { background: rgba(142,68,173,0.12); color: var(--accent-adv); }
-  .section[data-section="perf"] .badge { background: rgba(22,163,74,0.12); color: var(--accent-perf); }
-  .section[data-section="security"] .badge { background: rgba(220,38,38,0.12); color: var(--accent-security); }
-  .section[data-section="testing"] .badge { background: rgba(8,145,178,0.12); color: var(--accent-testing); }
+    .section[data-section="html"] .badge {
+      background: rgba(232, 93, 4, 0.12);
+      color: var(--accent-html);
+    }
 
-  .count-badge {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--muted);
-    background: rgba(0,0,0,0.04);
-    padding: 0.2rem 0.5rem;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-  }
+    .section[data-section="css"] .badge {
+      background: rgba(0, 150, 199, 0.12);
+      color: var(--accent-css);
+    }
 
-  .btn-random {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    padding: 0.45rem 1rem;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.15s;
-    text-transform: uppercase;
-    flex-shrink: 0;
-  }
+    .section[data-section="js"] .badge {
+      background: rgba(212, 160, 0, 0.12);
+      color: var(--accent-js);
+    }
 
-  .section[data-section="html"] .btn-random { background: var(--accent-html); color: #fff; }
-  .section[data-section="css"]  .btn-random { background: var(--accent-css); color: #fff; }
-  .section[data-section="js"]   .btn-random { background: var(--accent-js); color: #000; }
-  .section[data-section="react"] .btn-random { background: var(--accent-react); color: #fff; }
-  .section[data-section="adv"]  .btn-random { background: var(--accent-adv); color: #fff; }
-  .section[data-section="perf"] .btn-random { background: var(--accent-perf); color: #fff; }
-  .section[data-section="security"] .btn-random { background: var(--accent-security); color: #fff; }
-  .section[data-section="testing"] .btn-random { background: var(--accent-testing); color: #fff; }
+    .section[data-section="react"] .badge {
+      background: rgba(9, 132, 227, 0.12);
+      color: var(--accent-react);
+    }
 
-  .btn-random:hover { transform: scale(1.05); opacity: 0.9; }
-  .btn-random:active { transform: scale(0.97); }
+    .section[data-section="adv"] .badge {
+      background: rgba(142, 68, 173, 0.12);
+      color: var(--accent-adv);
+    }
 
-  .card-area {
-    padding: 1.5rem;
-    min-height: 120px;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
+    .section[data-section="perf"] .badge {
+      background: rgba(22, 163, 74, 0.12);
+      color: var(--accent-perf);
+    }
 
-  .question-display {
-    flex: 1;
-  }
+    .section[data-section="security"] .badge {
+      background: rgba(220, 38, 38, 0.12);
+      color: var(--accent-security);
+    }
 
-  .q-number {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--muted);
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.1em;
-  }
+    .section[data-section="testing"] .badge {
+      background: rgba(8, 145, 178, 0.12);
+      color: var(--accent-testing);
+    }
 
-  .q-text {
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
-    font-weight: 700;
-    line-height: 1.45;
-    letter-spacing: -0.01em;
-    animation: fadeSlide 0.25s ease;
-  }
+    .count-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      background: rgba(0, 0, 0, 0.04);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
 
-  @keyframes fadeSlide {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+    .btn-random {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
 
-  .q-hint {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--muted);
-    margin-top: 0.4rem;
-    font-style: italic;
-  }
+    .section[data-section="html"] .btn-random {
+      background: var(--accent-html);
+      color: #fff;
+    }
 
-  .progress-row {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-top: 0.5rem;
-  }
+    .section[data-section="css"] .btn-random {
+      background: var(--accent-css);
+      color: #fff;
+    }
 
-  .progress-bar-wrap {
-    flex: 1;
-    height: 3px;
-    background: var(--border);
-    border-radius: 999px;
-    overflow: hidden;
-  }
+    .section[data-section="js"] .btn-random {
+      background: var(--accent-js);
+      color: #000;
+    }
 
-  .progress-bar {
-    height: 100%;
-    border-radius: 999px;
-    transition: width 0.4s ease;
-  }
+    .section[data-section="react"] .btn-random {
+      background: var(--accent-react);
+      color: #fff;
+    }
 
-  .section[data-section="html"] .progress-bar { background: var(--accent-html); }
-  .section[data-section="css"]  .progress-bar { background: var(--accent-css); }
-  .section[data-section="js"]   .progress-bar { background: var(--accent-js); }
-  .section[data-section="react"] .progress-bar { background: var(--accent-react); }
-  .section[data-section="adv"]  .progress-bar { background: var(--accent-adv); }
-  .section[data-section="perf"] .progress-bar { background: var(--accent-perf); }
-  .section[data-section="security"] .progress-bar { background: var(--accent-security); }
-  .section[data-section="testing"] .progress-bar { background: var(--accent-testing); }
+    .section[data-section="adv"] .btn-random {
+      background: var(--accent-adv);
+      color: #fff;
+    }
 
-  .progress-text {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--muted);
-    white-space: nowrap;
-  }
+    .section[data-section="perf"] .btn-random {
+      background: var(--accent-perf);
+      color: #fff;
+    }
 
-  .all-btn-wrap {
-    text-align: center;
-    margin-top: 1rem;
-  }
+    .section[data-section="security"] .btn-random {
+      background: var(--accent-security);
+      color: #fff;
+    }
 
-  .btn-all {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    padding: 0.7rem 2rem;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--text);
-    cursor: pointer;
-    transition: all 0.2s;
-    text-transform: uppercase;
-  }
+    .section[data-section="testing"] .btn-random {
+      background: var(--accent-testing);
+      color: #fff;
+    }
 
-  .btn-all:hover { background: rgba(0,0,0,0.06); border-color: #b0b0cc; }
-</style>
+    .btn-random:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    .btn-random:active {
+      transform: scale(0.97);
+    }
+
+    .card-area {
+      padding: 1.5rem;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .question-display {
+      flex: 1;
+    }
+
+    .q-number {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.1em;
+    }
+
+    .q-text {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 700;
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      animation: fadeSlide 0.25s ease;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .q-hint {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    .progress-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .progress-bar-wrap {
+      flex: 1;
+      height: 3px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    .section[data-section="html"] .progress-bar {
+      background: var(--accent-html);
+    }
+
+    .section[data-section="css"] .progress-bar {
+      background: var(--accent-css);
+    }
+
+    .section[data-section="js"] .progress-bar {
+      background: var(--accent-js);
+    }
+
+    .section[data-section="react"] .progress-bar {
+      background: var(--accent-react);
+    }
+
+    .section[data-section="adv"] .progress-bar {
+      background: var(--accent-adv);
+    }
+
+    .section[data-section="perf"] .progress-bar {
+      background: var(--accent-perf);
+    }
+
+    .section[data-section="security"] .progress-bar {
+      background: var(--accent-security);
+    }
+
+    .section[data-section="testing"] .progress-bar {
+      background: var(--accent-testing);
+    }
+
+    .progress-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .all-btn-wrap {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .btn-all {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 0.7rem 2rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+    }
+
+    .btn-all:hover {
+      background: rgba(0, 0, 0, 0.06);
+      border-color: #b0b0cc;
+    }
+  </style>
 </head>
+
 <body>
 
-<h1>Interview Flash Cards</h1>
-<p class="subtitle">// random câu hỏi phỏng vấn frontend</p>
+  <h1>Interview Flash Cards</h1>
+  <p class="subtitle">// random câu hỏi phỏng vấn frontend</p>
 
-<div class="sections" id="app"></div>
+  <div class="sections" id="app"></div>
 
-<div class="all-btn-wrap">
-  <button class="btn-all" onclick="randomAll()">⚡ Random tất cả</button>
-</div>
+  <div class="all-btn-wrap">
+    <button class="btn-all" onclick="randomAll()">⚡ Random tất cả</button>
+  </div>
 
-<script>
-const data = {
-  html: {
-    label: "HTML",
-    questions: [
-      { q: "Semantics là gì?", hint: "ý nghĩa thẻ, SEO, accessibility, maintenance" },
-      { q: "span vs div — khác nhau như nào?", hint: "inline vs block, lưu ý không nest div trong span" },
-      { q: "Thẻ <meta> dùng làm gì?", hint: "title, description, charset, Open Graph, robots" },
-      { q: "Thuộc tính defer và async trên thẻ <script> là gì?", hint: "parse HTML, download, execute — thứ tự khác nhau ra sao" },
-      { q: "Một trang web có thể chứa nhiều thẻ <header> hay <footer> không?", hint: "có, per-section — ví dụ header của article" },
-      { q: "srcset trong thẻ <img> dùng làm gì?", hint: "responsive image, browser tự chọn dựa theo DPR" },
-      { q: "Web Components là gì? Shadow DOM là gì?", hint: "Custom Elements, Shadow DOM isolated, HTML Templates" },
-      { q: "HTML5 có gì mới? Kể 1 số thẻ mới.", hint: "audio, video, header, nav, section, article, canvas, localStorage..." },
-      { q: "<iframe> dùng làm gì? Lưu ý gì?", hint: "embed trang khác, sandbox attribute, bảo mật" },
-      { q: "div vs section — khi nào dùng cái nào?", hint: "div: layout/style, section: có chủ đề + heading, Google index" },
-    ]
-  },
-  css: {
-    label: "CSS",
-    questions: [
-      { q: "position trong CSS — giải thích các loại?", hint: "static, relative, absolute, fixed, sticky — mốc tham chiếu khác nhau" },
-      { q: "box-sizing là gì? content-box vs border-box?", hint: "cách tính width/height, tại sao hay reset về border-box" },
-      { q: "inline vs inline-block vs block — khác nhau?", hint: "xuống hàng, chiếm width, set được width/height không" },
-      { q: "Liệt kê 3+ cách định nghĩa màu trong CSS?", hint: "hex, rgb, tên color, oklch — Tailwind 4 dùng oklch" },
-      { q: "Những cách đưa 1 phần tử vào giữa trang?", hint: "margin auto, flex, grid, position+transform, table-cell" },
-      { q: "margin vs padding — khác nhau?", hint: "ngoài vs trong, margin collapse (top+bottom), left+right cộng" },
-      { q: "display:none vs visibility:hidden vs opacity:0 — khác nhau?", hint: "reflow vs repaint, click được không" },
-      { q: "width:auto vs width:100% — khác nhau?", hint: "auto tự trừ margin/padding/border, 100% có thể tràn" },
-      { q: "grid vs flexbox — khi nào dùng cái nào?", hint: "2D vs 1D, design quyết định vs content quyết định" },
-      { q: "px vs em vs rem — khác nhau?", hint: "tuyệt đối, theo parent, theo root — em nhân chồng dễ bug" },
-      { q: "z-index hoạt động khi nào?", hint: "phải có position khác static, stacking context, ví dụ modal" },
-      { q: "Giải thích: div,p / div p / div>p / div+p / div~p", hint: "group / descendant / child trực tiếp / adjacent / sibling sau" },
-      { q: "BEM là gì? Ưu nhược điểm?", hint: "Block__Element--Modifier, ít conflict, kết hợp SCSS tốt" },
-      { q: "Có mấy cách sử dụng CSS trên trang web?", hint: "link, inline, thẻ style, @import — @import chậm nhất" },
-      { q: "CSS có phân biệt hoa thường không?", hint: "tuỳ: selector/property không, nhưng class name, variable thì có" },
-    ]
-  },
-  js: {
-    label: "JS / TS",
-    questions: [
-      { q: "Closure là gì? Ưu nhược điểm?", hint: "inner function nhớ lexical env của outer, private var, stale closure, memory leak" },
-      { q: "Currying là gì? Ví dụ thực tế?", hint: "f(a,b,c) → f(a)(b)(c), ví dụ handleChange trong form React" },
-      { q: "bind / call / apply — khác nhau?", hint: "this là gì trước, call/apply gọi ngay, bind trả function mới" },
-      { q: "var vs let vs const — khác nhau?", hint: "scope, hoisting, TDZ, reassign, use strict" },
-      { q: "Shallow clone vs Deep clone?", hint: "spread/assign vs structuredClone/lodash, lưu ý JSON.stringify limitations" },
-      { q: "Callback, Promise, Async/await — định nghĩa và so sánh?", hint: "callback hell → .then → async/await, Promise.all cho parallel" },
-      { q: "Event loop hoạt động như thế nào?", hint: "call stack, Web APIs, microtask (Promise), macrotask (setTimeout), render" },
-      { q: "type vs interface trong TypeScript?", hint: "union/tuple chỉ type làm được, declaration merge chỉ interface, & intersection bug" },
-      { q: "Cho 2 object a và b, so sánh bằng nhau như thế nào?", hint: "JSON.stringify (lưu ý thứ tự key), lodash isEqual, đệ quy" },
-      { q: "== vs === — khác nhau?", hint: "type coercion, [] == false, null == undefined, null == 0 là false" },
-      { q: "Higher Order Function là gì?", hint: "nhận hoặc trả về function, ví dụ map/filter/reduce, HOC trong React" },
-      { q: "splice vs split vs slice — khác nhau?", hint: "PM vs Member: splice mutate array, slice copy, split string→array" },
-      { q: "Cookie vs SessionStorage vs LocalStorage — khác nhau?", hint: "size, expiry, HTTPOnly, SameSite (Strict/Lax/None), Secure" },
-      { q: "map vs forEach vs for loop — khi nào dùng cái nào?", hint: "return value, break/continue, async/await behavior" },
-      { q: "Các kiểu dữ liệu trong JavaScript?", hint: "7 primitive: string/number/boolean/null/undefined/symbol/bigint, typeof function, NaN !== NaN" },
-      { q: "So sánh map, forEach, filter, reduce — khi nào dùng cái nào?", hint: "transform / side-effect / lọc / gộp thành 1 giá trị" },
-      { q: "Event bubbling là gì?", hint: "nổi từ child lên parent đến document, stopPropagation, target vs currentTarget, delegation" },
-    ]
-  },
-  react: {
-    label: "React",
-    questions: [
-      { q: "useCallback, useMemo, React.memo — khi nào dùng?", hint: "memo: shallow compare props, kết hợp useMemo/useCallback nếu props là object/function" },
-      { q: "useLayoutEffect vs useEffect — khác nhau?", hint: "trước vs sau khi browser vẽ, flicker, dùng cho tooltip/dropdown" },
-      { q: "Virtual DOM vs Real DOM là gì?", hint: "DOM là gì trước, virtual DOM, batching, reconciliation" },
-      { q: "key trong React — dùng làm gì? Tại sao không dùng index?", hint: "fiber tree, reconciliation, bug khi xoá giữa list, force re-render bằng key" },
-      { q: "useRef và useImperativeHandle dùng làm gì?", hint: "DOM ref, lưu giá trị không re-render, expose method cho parent" },
-      { q: "Next.js là gì và vì sao dùng?", hint: "SSR, SEO, file-based routing, image/font optimize, ISR, SSG" },
-      { q: "CSR vs SSR vs SSG vs ISR — khác nhau?", hint: "HTML được tạo khi nào, ở đâu, revalidate như nào" },
-      { q: "Higher Order Component vs Custom Hook — khác nhau?", hint: "HOC: wrapper hell, khó debug / Hook: phẳng hơn, dễ đọc hơn" },
-      { q: "Context API — dùng như nào? Lưu ý gì?", hint: "createContext, Provider, useContext, re-render, tách context nhỏ" },
-      { q: "return trong useEffect dùng làm gì?", hint: "cleanup: unmount + trước khi effect chạy lại" },
-      { q: "Controlled vs Uncontrolled component?", hint: "useState vs useRef, validate realtime vs lấy value khi cần" },
-      { q: "forwardRef dùng làm gì? (bị bỏ ở React 19)", hint: "truyền ref từ parent xuống child, kết hợp useImperativeHandle" },
-    ]
-  },
-  adv: {
-    label: "Nâng Cao",
-    questions: [
-      { q: "CORS là gì? Khi dính CORS thì làm gì?", hint: "origin = protocol+domain+port, fix ở server, dev dùng proxy vite" },
-      { q: "Redux chưa làm — giải thích tại sao dùng Zustand/Jotai?", hint: "ít boilerplate, gọn nhẹ, project nhỏ — nhưng biết flow Redux" },
-      { q: "Handle error API như thế nào?", hint: "interceptor axios, 401/403/500, error boundary React, error.ts Next.js" },
-      { q: "Multi-language (i18n) trong web như nào?", hint: "react-i18n/next-intl, hreflang, lang attr, URL /vi /en, sitemap" },
-      { q: "Refresh token hoạt động như thế nào?", hint: "interceptor 401 → refresh → retry, isRefreshing flag, queue, logout nếu hết hạn" },
-      { q: "AbortController dùng làm gì?", hint: "cancel fetch khi unmount hoặc search mới, signal kết nối controller với request" },
-      { q: "Repaint vs Reflow — khác nhau?", hint: "reflow: tính lại layout / repaint: vẽ lại / composite: GPU, ưu tiên composite > repaint > reflow" },
-      { q: "useReducer dùng khi nào? So sánh với useState?", hint: "nhiều state liên quan nhau, dispatch action, giống Redux nhưng local" },
-      { q: "Tối ưu ảnh trong web bằng cách nào?", hint: "WebP/AVIF, lazy load, CDN, srcset, preload, nén, Next.js Image tự serve AVIF" },
-      { q: "Promise.all vs .race vs .allSettled vs .any?", hint: "all: fail fast / race: nhanh nhất kể cả lỗi / allSettled: không fail / any: resolve nhanh nhất" },
-      { q: "<picture> vs srcset — khác nhau?", hint: "picture: force đúng ảnh theo breakpoint / srcset: gợi ý browser tự chọn theo DPR" },
-    ]
-  },
-  perf: {
-    label: "Code Splitting & Vitals",
-    questions: [
-      { q: "Code splitting là gì và tại sao cần dùng?", hint: "bundle nặng → tách chunk, chỉ load khi cần, ví dụ /dashboard chưa vào không load" },
-      { q: "React.lazy và Suspense dùng như nào?", hint: "dynamic import, fallback loading, chỉ hỗ trợ default export" },
-      { q: "Nên split code ở đâu? Route-based vs component-based?", hint: "route-based phổ biến nhất, component-based cho modal/chart nặng" },
-      { q: "Lazy load bị lỗi network thì xử lý như nào?", hint: "Error Boundary bọc Suspense, fallback UI, nút retry" },
-      { q: "Preload component trước khi user navigate thì làm như nào?", hint: "trigger import() lúc onMouseEnter, Next.js tự prefetch" },
-      { q: "Core Web Vitals là gì?", hint: "LCP < 2.5s, CLS < 0.1 — đo gì, tại sao quan trọng" },
-      { q: "LCP chậm thì fix như nào?", hint: "preload hero image, CDN, WebP/AVIF, SSR, giảm render-blocking" },
-      { q: "CLS cao thì fix như nào?", hint: "set width/height cho img/video, font-display, không inject content phía trên" },
-      { q: "Dùng tool nào để đo Web Vitals?", hint: "Lighthouse, PageSpeed Insights, Chrome DevTools Performance" },
-    ]
-  },
-  security: {
-    label: "Security & A11y",
-    questions: [
-      { q: "XSS là gì? Có mấy loại? Phòng chống như nào?", hint: "Stored / Reflected / DOM-based, dangerouslySetInnerHTML, DOMPurify, HttpOnly, CSP" },
-      { q: "CSRF là gì? Khác XSS ở điểm nào?", hint: "trang khác gửi request giả mạo, SameSite cookie, CSRF token" },
-      { q: "Tại sao không nên lưu token trong localStorage?", hint: "JS đọc được → XSS lấy token, HttpOnly cookie an toàn hơn" },
-      { q: "Accessibility là gì? Tại sao quan trọng?", hint: "screen reader, pháp lý, SEO, best practice" },
-      { q: "ARIA roles là gì? Khi nào dùng?", hint: "bổ sung semantic cho screen reader, dùng semantic HTML trước" },
-      { q: "Keyboard navigation và tabIndex dùng làm gì?", hint: "tabIndex=0 vào tab order, tabIndex=-1 focus bằng JS, tránh tabIndex > 0" },
-      { q: "WCAG là gì? Level A, AA, AAA khác nhau gì?", hint: "A: tối thiểu, AA: chuẩn hầu hết dự án, AAA: khó đạt, color contrast 4.5:1" },
-    ]
-  },
-  testing: {
-    label: "Testing",
-    questions: [
-      { q: "Unit test, integration test, e2e test khác nhau gì?", hint: "1 function / nhiều module cùng nhau / toàn bộ flow browser thật" },
-      { q: "Nên test behavior hay implementation?", hint: "behavior: test như user dùng, refactor không break / implementation: brittle" },
-      { q: "Làm sao test custom hook?", hint: "renderHook từ @testing-library/react, act() để wrap state change" },
-      { q: "Test coverage 100% có đảm bảo không bug không?", hint: "không — chạy qua code không có nghĩa assert đúng, quan trọng là test có ý nghĩa" },
-    ]
-  }
-};
+  <script>
+    const data = {
+      html: {
+        label: "HTML",
+        questions: [
+          { q: "Semantics là gì?", hint: "ý nghĩa thẻ, SEO, accessibility, maintenance" },
+          { q: "span vs div — khác nhau như nào?", hint: "inline vs block, lưu ý không nest div trong span" },
+          { q: "Thẻ <meta> dùng làm gì?", hint: "title, description, charset, Open Graph, robots" },
+          { q: "Thuộc tính defer và async trên thẻ <script> là gì?", hint: "parse HTML, download, execute — thứ tự khác nhau ra sao" },
+          { q: "Một trang web có thể chứa nhiều thẻ <header> hay <footer> không?", hint: "có, per-section — ví dụ header của article" },
+          { q: "srcset trong thẻ <img> dùng làm gì?", hint: "responsive image, browser tự chọn dựa theo DPR" },
+          { q: "Web Components là gì? Shadow DOM là gì?", hint: "Custom Elements, Shadow DOM isolated, HTML Templates" },
+          { q: "HTML5 có gì mới? Kể 1 số thẻ mới.", hint: "audio, video, header, nav, section, article, canvas, localStorage..." },
+          { q: "<iframe> dùng làm gì? Lưu ý gì?", hint: "embed trang khác, sandbox attribute, bảo mật" },
+          { q: "div vs section — khi nào dùng cái nào?", hint: "div: layout/style, section: có chủ đề + heading, Google index" },
+        ]
+      },
+      css: {
+        label: "CSS",
+        questions: [
+          { q: "position trong CSS — giải thích các loại?", hint: "static, relative, absolute, fixed, sticky — mốc tham chiếu khác nhau" },
+          { q: "box-sizing là gì? content-box vs border-box?", hint: "cách tính width/height, tại sao hay reset về border-box" },
+          { q: "inline vs inline-block vs block — khác nhau?", hint: "xuống hàng, chiếm width, set được width/height không" },
+          { q: "Liệt kê 3+ cách định nghĩa màu trong CSS?", hint: "hex, rgb, tên color, oklch — Tailwind 4 dùng oklch" },
+          { q: "Những cách đưa 1 phần tử vào giữa trang?", hint: "margin auto, flex, grid, position+transform, table-cell" },
+          { q: "margin vs padding — khác nhau?", hint: "ngoài vs trong, margin collapse (top+bottom), left+right cộng" },
+          { q: "display:none vs visibility:hidden vs opacity:0 — khác nhau?", hint: "reflow vs repaint, click được không" },
+          { q: "width:auto vs width:100% — khác nhau?", hint: "auto tự trừ margin/padding/border, 100% có thể tràn" },
+          { q: "grid vs flexbox — khi nào dùng cái nào?", hint: "2D vs 1D, design quyết định vs content quyết định" },
+          { q: "px vs em vs rem — khác nhau?", hint: "tuyệt đối, theo parent, theo root — em nhân chồng dễ bug" },
+          { q: "z-index hoạt động khi nào?", hint: "phải có position khác static, stacking context, ví dụ modal" },
+          { q: "Giải thích: div,p / div p / div>p / div+p / div~p", hint: "group / descendant / child trực tiếp / adjacent / sibling sau" },
+          { q: "BEM là gì? Ưu nhược điểm?", hint: "Block__Element--Modifier, ít conflict, kết hợp SCSS tốt" },
+          { q: "Có mấy cách sử dụng CSS trên trang web?", hint: "link, inline, thẻ style, @import — @import chậm nhất" },
+          { q: "CSS có phân biệt hoa thường không?", hint: "tuỳ: selector/property không, nhưng class name, variable thì có" },
+        ]
+      },
+      js: {
+        label: "JS / TS",
+        questions: [
+          { q: "Closure là gì? Ưu nhược điểm?", hint: "inner function nhớ lexical env của outer, private var, stale closure, memory leak" },
+          { q: "Currying là gì? Ví dụ thực tế?", hint: "f(a,b,c) → f(a)(b)(c), ví dụ handleChange trong form React" },
+          { q: "bind / call / apply — khác nhau?", hint: "this là gì trước, call/apply gọi ngay, bind trả function mới" },
+          { q: "var vs let vs const — khác nhau?", hint: "scope, hoisting, TDZ, reassign, use strict" },
+          { q: "Shallow clone vs Deep clone?", hint: "spread/assign vs structuredClone/lodash, lưu ý JSON.stringify limitations" },
+          { q: "Callback, Promise, Async/await — định nghĩa và so sánh?", hint: "callback hell → .then → async/await, Promise.all cho parallel" },
+          { q: "Event loop hoạt động như thế nào?", hint: "call stack, Web APIs, microtask (Promise), macrotask (setTimeout), render" },
+          { q: "type vs interface trong TypeScript?", hint: "union/tuple chỉ type làm được, declaration merge chỉ interface, & intersection bug" },
+          { q: "Cho 2 object a và b, so sánh bằng nhau như thế nào?", hint: "JSON.stringify (lưu ý thứ tự key), lodash isEqual, đệ quy" },
+          { q: "== vs === — khác nhau?", hint: "type coercion, [] == false, null == undefined, null == 0 là false" },
+          { q: "Higher Order Function là gì?", hint: "nhận hoặc trả về function, ví dụ map/filter/reduce, HOC trong React" },
+          { q: "splice vs split vs slice — khác nhau?", hint: "PM vs Member: splice mutate array, slice copy, split string→array" },
+          { q: "Cookie vs SessionStorage vs LocalStorage — khác nhau?", hint: "size, expiry, HTTPOnly, SameSite (Strict/Lax/None), Secure" },
+          { q: "map vs forEach vs for loop — khi nào dùng cái nào?", hint: "return value, break/continue, async/await behavior" },
+          { q: "Các kiểu dữ liệu trong JavaScript?", hint: "7 primitive: string/number/boolean/null/undefined/symbol/bigint, typeof function, NaN !== NaN" },
+          { q: "So sánh map, forEach, filter, reduce — khi nào dùng cái nào?", hint: "transform / side-effect / lọc / gộp thành 1 giá trị" },
+          { q: "Event bubbling là gì?", hint: "nổi từ child lên parent đến document, stopPropagation, target vs currentTarget, delegation" },
+        ]
+      },
+      react: {
+        label: "React",
+        questions: [
+          { q: "useCallback, useMemo, React.memo — khi nào dùng?", hint: "memo: shallow compare props, kết hợp useMemo/useCallback nếu props là object/function" },
+          { q: "useLayoutEffect vs useEffect — khác nhau?", hint: "trước vs sau khi browser vẽ, flicker, dùng cho tooltip/dropdown" },
+          { q: "Virtual DOM vs Real DOM là gì?", hint: "DOM là gì trước, virtual DOM, batching, reconciliation" },
+          { q: "key trong React — dùng làm gì? Tại sao không dùng index?", hint: "fiber tree, reconciliation, bug khi xoá giữa list, force re-render bằng key" },
+          { q: "useRef và useImperativeHandle dùng làm gì?", hint: "DOM ref, lưu giá trị không re-render, expose method cho parent" },
+          { q: "Next.js là gì và vì sao dùng?", hint: "SSR, SEO, file-based routing, image/font optimize, ISR, SSG" },
+          { q: "CSR vs SSR vs SSG vs ISR — khác nhau?", hint: "HTML được tạo khi nào, ở đâu, revalidate như nào" },
+          { q: "Higher Order Component vs Custom Hook — khác nhau?", hint: "HOC: wrapper hell, khó debug / Hook: phẳng hơn, dễ đọc hơn" },
+          { q: "Context API — dùng như nào? Lưu ý gì?", hint: "createContext, Provider, useContext, re-render, tách context nhỏ" },
+          { q: "return trong useEffect dùng làm gì?", hint: "cleanup: unmount + trước khi effect chạy lại" },
+          { q: "Controlled vs Uncontrolled component?", hint: "useState vs useRef, validate realtime vs lấy value khi cần" },
+          { q: "forwardRef dùng làm gì? (bị bỏ ở React 19)", hint: "truyền ref từ parent xuống child, kết hợp useImperativeHandle" },
+        ]
+      },
+      adv: {
+        label: "Nâng Cao",
+        questions: [
+          { q: "CORS là gì? Khi dính CORS thì làm gì?", hint: "origin = protocol+domain+port, fix ở server, dev dùng proxy vite" },
+          { q: "Redux chưa làm — giải thích tại sao dùng Zustand/Jotai?", hint: "ít boilerplate, gọn nhẹ, project nhỏ — nhưng biết flow Redux" },
+          { q: "Handle error API như thế nào?", hint: "interceptor axios, 401/403/500, error boundary React, error.ts Next.js" },
+          { q: "Multi-language (i18n) trong web như nào?", hint: "react-i18n/next-intl, hreflang, lang attr, URL /vi /en, sitemap" },
+          { q: "Refresh token hoạt động như thế nào?", hint: "interceptor 401 → refresh → retry, isRefreshing flag, queue, logout nếu hết hạn" },
+          { q: "AbortController dùng làm gì?", hint: "cancel fetch khi unmount hoặc search mới, signal kết nối controller với request" },
+          { q: "Repaint vs Reflow — khác nhau?", hint: "reflow: tính lại layout / repaint: vẽ lại / composite: GPU, ưu tiên composite > repaint > reflow" },
+          { q: "useReducer dùng khi nào? So sánh với useState?", hint: "nhiều state liên quan nhau, dispatch action, giống Redux nhưng local" },
+          { q: "Tối ưu ảnh trong web bằng cách nào?", hint: "WebP/AVIF, lazy load, CDN, srcset, preload, nén, Next.js Image tự serve AVIF" },
+          { q: "Promise.all vs .race vs .allSettled vs .any?", hint: "all: fail fast / race: nhanh nhất kể cả lỗi / allSettled: không fail / any: resolve nhanh nhất" },
+          { q: "<picture> vs srcset — khác nhau?", hint: "picture: force đúng ảnh theo breakpoint / srcset: gợi ý browser tự chọn theo DPR" },
+        ]
+      },
+      perf: {
+        label: "Code Splitting & Vitals",
+        questions: [
+          { q: "Code splitting là gì và tại sao cần dùng?", hint: "bundle nặng → tách chunk, chỉ load khi cần, ví dụ /dashboard chưa vào không load" },
+          { q: "React.lazy và Suspense dùng như nào?", hint: "dynamic import, fallback loading, chỉ hỗ trợ default export" },
+          { q: "Nên split code ở đâu? Route-based vs component-based?", hint: "route-based phổ biến nhất, component-based cho modal/chart nặng" },
+          { q: "Lazy load bị lỗi network thì xử lý như nào?", hint: "Error Boundary bọc Suspense, fallback UI, nút retry" },
+          { q: "Preload component trước khi user navigate thì làm như nào?", hint: "trigger import() lúc onMouseEnter, Next.js tự prefetch" },
+          { q: "Core Web Vitals là gì?", hint: "LCP < 2.5s, CLS < 0.1 — đo gì, tại sao quan trọng" },
+          { q: "LCP chậm thì fix như nào?", hint: "preload hero image, CDN, WebP/AVIF, SSR, giảm render-blocking" },
+          { q: "CLS cao thì fix như nào?", hint: "set width/height cho img/video, font-display, không inject content phía trên" },
+          { q: "Dùng tool nào để đo Web Vitals?", hint: "Lighthouse, PageSpeed Insights, Chrome DevTools Performance" },
+        ]
+      },
+      security: {
+        label: "Security & A11y",
+        questions: [
+          { q: "XSS là gì? Có mấy loại? Phòng chống như nào?", hint: "Stored / Reflected / DOM-based, dangerouslySetInnerHTML, DOMPurify, HttpOnly, CSP" },
+          { q: "CSRF là gì? Khác XSS ở điểm nào?", hint: "trang khác gửi request giả mạo, SameSite cookie, CSRF token" },
+          { q: "Tại sao không nên lưu token trong localStorage?", hint: "JS đọc được → XSS lấy token, HttpOnly cookie an toàn hơn" },
+          { q: "Accessibility là gì? Tại sao quan trọng?", hint: "screen reader, pháp lý, SEO, best practice" },
+          { q: "ARIA roles là gì? Khi nào dùng?", hint: "bổ sung semantic cho screen reader, dùng semantic HTML trước" },
+          { q: "Keyboard navigation và tabIndex dùng làm gì?", hint: "tabIndex=0 vào tab order, tabIndex=-1 focus bằng JS, tránh tabIndex > 0" },
+          { q: "WCAG là gì? Level A, AA, AAA khác nhau gì?", hint: "A: tối thiểu, AA: chuẩn hầu hết dự án, AAA: khó đạt, color contrast 4.5:1" },
+        ]
+      },
+      testing: {
+        label: "Testing",
+        questions: [
+          { q: "Unit test, integration test, e2e test khác nhau gì?", hint: "1 function / nhiều module cùng nhau / toàn bộ flow browser thật" },
+          { q: "Nên test behavior hay implementation?", hint: "behavior: test như user dùng, refactor không break / implementation: brittle" },
+          { q: "Làm sao test custom hook?", hint: "renderHook từ @testing-library/react, act() để wrap state change" },
+          { q: "Test coverage 100% có đảm bảo không bug không?", hint: "không — chạy qua code không có nghĩa assert đúng, quan trọng là test có ý nghĩa" },
+        ]
+      }
+    };
 
-// Track seen questions per section
-const state = {};
+    // Track seen questions per section
+    const state = {};
 
-function init() {
-  const app = document.getElementById('app');
-  
-  Object.entries(data).forEach(([key, section]) => {
-    state[key] = { seen: new Set(), current: null };
-    
-    const el = document.createElement('div');
-    el.className = 'section';
-    el.dataset.section = key;
-    el.innerHTML = `
+    function init() {
+      const app = document.getElementById('app');
+
+      Object.entries(data).forEach(([key, section]) => {
+        state[key] = { seen: new Set(), current: null };
+
+        const el = document.createElement('div');
+        el.className = 'section';
+        el.dataset.section = key;
+        el.innerHTML = `
       <div class="section-header">
         <div class="section-title">
           <span class="badge">${section.label}</span>
@@ -414,7 +523,6 @@ function init() {
         <div class="question-display">
           <div class="q-number" id="qnum-${key}">Bấm Random để bắt đầu</div>
           <div class="q-text" id="qtext-${key}" style="color:var(--muted);font-weight:400;font-size:1rem">— chờ câu hỏi —</div>
-          <div class="q-hint" id="qhint-${key}"></div>
         </div>
         <div class="progress-row">
           <div class="progress-bar-wrap">
@@ -424,59 +532,60 @@ function init() {
         </div>
       </div>
     `;
-    app.appendChild(el);
-  });
-}
+        app.appendChild(el);
+      });
+    }
 
-function randomQ(key) {
-  const section = data[key];
-  const s = state[key];
-  
-  // Reset if all seen
-  if (s.seen.size >= section.questions.length) {
-    s.seen.clear();
-  }
-  
-  const unseen = section.questions
-    .map((q, i) => i)
-    .filter(i => !s.seen.has(i));
-  
-  const idx = unseen[Math.floor(Math.random() * unseen.length)];
-  s.seen.add(idx);
-  s.current = idx;
-  
-  const q = section.questions[idx];
-  
-  // Update DOM
-  const numEl = document.getElementById(`qnum-${key}`);
-  const textEl = document.getElementById(`qtext-${key}`);
-  const hintEl = document.getElementById(`qhint-${key}`);
-  const barEl  = document.getElementById(`qbar-${key}`);
-  const progEl = document.getElementById(`qprog-${key}`);
-  
-  numEl.textContent = `Câu ${idx + 1} / ${section.questions.length}`;
-  
-  // Re-trigger animation
-  textEl.style.animation = 'none';
-  textEl.offsetHeight; // reflow
-  textEl.style.animation = '';
-  textEl.style.color = '';
-  textEl.style.fontWeight = '';
-  textEl.style.fontSize = '';
-  textEl.textContent = q.q;
-  
-  hintEl.textContent = q.hint ? `💡 ${q.hint}` : '';
-  
-  const pct = (s.seen.size / section.questions.length) * 100;
-  barEl.style.width = pct + '%';
-  progEl.textContent = `${s.seen.size} / ${section.questions.length}`;
-}
+    function randomQ(key) {
+      const section = data[key];
+      const s = state[key];
 
-function randomAll() {
-  Object.keys(data).forEach(key => randomQ(key));
-}
+      // Reset if all seen
+      if (s.seen.size >= section.questions.length) {
+        s.seen.clear();
+      }
 
-init();
-</script>
+      const unseen = section.questions
+        .map((q, i) => i)
+        .filter(i => !s.seen.has(i));
+
+      const idx = unseen[Math.floor(Math.random() * unseen.length)];
+      s.seen.add(idx);
+      s.current = idx;
+
+      const q = section.questions[idx];
+
+      // Update DOM
+      const numEl = document.getElementById(`qnum-${key}`);
+      const textEl = document.getElementById(`qtext-${key}`);
+      const hintEl = document.getElementById(`qhint-${key}`);
+      const barEl = document.getElementById(`qbar-${key}`);
+      const progEl = document.getElementById(`qprog-${key}`);
+
+      numEl.textContent = `Câu ${idx + 1} / ${section.questions.length}`;
+
+      // Re-trigger animation
+      textEl.style.animation = 'none';
+      textEl.offsetHeight; // reflow
+      textEl.style.animation = '';
+      textEl.style.color = '';
+      textEl.style.fontWeight = '';
+      textEl.style.fontSize = '';
+      textEl.textContent = q.q;
+
+      hintEl.textContent = q.hint ? `💡 ${q.hint}` : '';
+
+      const pct = (s.seen.size / section.questions.length) * 100;
+      barEl.style.width = pct + '%';
+      progEl.textContent = `${s.seen.size} / ${section.questions.length}`;
+    }
+
+    function randomAll() {
+      Object.keys(data).forEach(key => randomQ(key));
+    }
+
+    init();
+  </script>
 </body>
+
 </html>
