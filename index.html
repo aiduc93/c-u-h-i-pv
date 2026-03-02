@@ -558,7 +558,6 @@
       // Update DOM
       const numEl = document.getElementById(`qnum-${key}`);
       const textEl = document.getElementById(`qtext-${key}`);
-      const hintEl = document.getElementById(`qhint-${key}`);
       const barEl = document.getElementById(`qbar-${key}`);
       const progEl = document.getElementById(`qprog-${key}`);
 
@@ -573,7 +572,6 @@
       textEl.style.fontSize = '';
       textEl.textContent = q.q;
 
-      hintEl.textContent = q.hint ? `💡 ${q.hint}` : '';
 
       const pct = (s.seen.size / section.questions.length) * 100;
       barEl.style.width = pct + '%';
