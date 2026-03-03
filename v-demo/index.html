@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Trang Chính (Parent)</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 40px;
+      text-align: center;
+      background: #fdfdfd;
+    }
+
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 500px;
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    button {
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+      border: 1px solid #333;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #eee;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .online {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .offline {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      overflow-x: auto;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>Trang Chính (F5 thoải mái)</h1>
+    <p>Thử reload trang này sau khi mở popup nhé!</p>
+
+    <button onclick="openPopup()">⚡ Mở Popup lần đầu</button>
+    <button onclick="sendPing()">📡 Gửi Ping</button>
+
+    <div id="status" class="status-badge offline">Chưa kết nối popup</div>
+
+    <h3>Dữ liệu nhận được:</h3>
+    <pre id="log">--- chưa có data ---</pre>
+  </div>
+
+  <script>
+    const POPUP_NAME = "MY_VITE_DEMO_POPUP";
+    const bc = new BroadcastChannel('inter_window_sync');
+
+    // Hàm mở hoặc khôi phục popup
+    function openPopup() {
+      // Reuse cái window cũ bằng name nếu nó đang mở
+      const existing = window.open('', POPUP_NAME);
+
+      if (existing && !existing.closed && existing.location.href !== 'about:blank') {
+        updateStatus(true);
+        log("Handshake: Đã lấy lại được popup cũ bằng window.name");
+      } else {
+        // Thực sự mở mới
+        window.open('/popup.html', POPUP_NAME, 'width=500,height=400');
+        log("Action: Đã mở popup mới");
+      }
+    }
+
+    function sendPing() {
+      bc.postMessage({ type: 'PING', time: new Date().toLocaleTimeString() });
+      log("Sent: PING");
+    }
+
+    // Nhận tin nhắn
+    bc.onmessage = (event) => {
+      const { type, payload } = event.data;
+      if (type === 'PONG') {
+        updateStatus(true);
+        log(`Received: PONG từ "${payload}"`);
+      }
+      if (type === 'POPUP_READY') {
+        updateStatus(true);
+        log("Received: POPUP_READY - Connect success!");
+      }
+    };
+
+    function updateStatus(isOnline) {
+      const el = document.getElementById('status');
+      el.innerText = isOnline ? "Đã kết nối popup ✅" : "Chưa kết nối popup ❌";
+      el.className = `status-badge ${isOnline ? 'online' : 'offline'}`;
+    }
+
+    function log(msg) {
+      const el = document.getElementById('log');
+      el.innerHTML = `[${new Date().toLocaleTimeString()}] ${msg}\n` + el.innerHTML;
+    }
+
+    // Tự động hỏi thăm khi load trang lại
+    window.onload = () => {
+      log("Page loaded (có thể là sau F5). Đang quét popup...");
+      bc.postMessage({ type: 'WHO_IS_ALIVE' });
+    };
+  </script>
+</body>
+
+</html>

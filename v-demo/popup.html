@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Đây là Popup (Child)</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: #f0f4f8;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #2563eb;
+    }
+
+    button {
+      padding: 8px 16px;
+      font-weight: bold;
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    pre {
+      background: #e2e8f0;
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 13px;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h2>Đây là Popup (Vẫn đang sống)</h2>
+    <p>Thử nhấn F5 ở trang chính (parent) đi!</p>
+
+    <button onclick="sendPong()">Gửi PONG 👋</button>
+
+    <h3>Log nhận được:</h3>
+    <pre id="log">--- chưa có data ---</pre>
+  </div>
+
+  <script>
+    const bc = new BroadcastChannel('inter_window_sync');
+
+    // Báo cho cha biết là tui đã load xong
+    window.onload = () => {
+      bc.postMessage({ type: 'POPUP_READY', payload: 'Popup is here!' });
+      log("Sent: POPUP_READY");
+    };
+
+    // Lắng nghe cha hỏi
+    bc.onmessage = (event) => {
+      const { type, time } = event.data;
+      if (type === 'PING') {
+        log(`Received: PING (time: ${time})`);
+      }
+      if (type === 'WHO_IS_ALIVE') {
+        log("Received: WHO_IS_ALIVE? (Parent vừa reload xong)");
+        sendPong();
+      }
+    };
+
+    function sendPong() {
+      bc.postMessage({ type: 'PONG', payload: 'Popup vẫn còn nè' });
+      log("Sent: PONG back to Parent");
+    }
+
+    function log(msg) {
+      const el = document.getElementById('log');
+      el.innerHTML = `[${new Date().toLocaleTimeString()}] ${msg}\n` + el.innerHTML;
+    }
+
+    // Báo cho cha biết khi mình bị đóng (beforeload)
+    window.addEventListener('beforeunload', () => {
+      bc.postMessage({ type: 'POPUP_DYING' });
+      bc.close(); // Quan trọng: cleanup
+    });
+  </script>
+</body>
+
+</html>
